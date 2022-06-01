@@ -1,7 +1,7 @@
 :root {
     --element-background: #2C423F;
     --light-gray: #829191;
-    --silver: #f1eaea;
+    --silver: #fffffff8;
 }
 
 * {
@@ -26,4 +26,21 @@ header {
 header a {
     text-decoration: none;
     color: var(--element-background);
+}
+
+section {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #b7caca;
+    text-align: center;
+    padding: 10px;
+}
+section h1 {
+    font-size: 2rem;
+}
+
+section p {
+    font-size: 1.5rem;
 }

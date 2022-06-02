@@ -1,13 +1,13 @@
 
-var questions = $('.question');
-var answerChoices = $('.answer-choice');
-var endGamePage = $('.endgame');
-var timerDisplay = $('#count-timer')
-var feedback = $(".feedback");
+var questions = 
+var answerChoices = 
+var endGamePage = 
+var timerDisplay = 
+var feedback = 
 
 
 //gen variables
-var score = timerDisplay;
+var score = 0;
 //score
 //time
 //timer
@@ -17,7 +17,8 @@ var questionsLeft = questions[i];
 
 // on start button click startGame function
 function startQuiz(){
-
+    if($('.title-section') === visible)
+    score
 }
 //start game function
 //hide intro start screen
@@ -68,7 +69,7 @@ function startTimer() {
         clearInterval(timerInterval);
         endQuiz();
       }
-      if(isWin){
+      if(isPassed){
         clearInterval(timerInterval);
       };
     },1000)}

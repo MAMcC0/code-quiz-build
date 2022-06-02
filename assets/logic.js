@@ -58,6 +58,20 @@
 // }
 
 // function startTimer 
+function startTimer() {
+    
+    var timerInterval = setInterval(function(){
+      timerCount --;
+      timerElement.innerHTML = timerCount;
+      if(timerCount === 0){
+        clearInterval(timerInterval);
+        endQuiz();
+      }
+      if(isWin){
+        clearInterval(timerInterval);
+      };
+    },1000)}
+    
 // time --;
 // re render time on screen
 

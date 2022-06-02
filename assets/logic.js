@@ -1,10 +1,11 @@
 
-var questions = 
-var answerChoices = 
-var endGamePage = 
-var timerDisplay = 
-var feedback = 
-
+var questions = document.getElementsByClassName("question");
+var answerChoices =  document.getElementsByClassName("answer-choice");
+var endGamePage =  document.getElementsByClassName("endgame");
+var timerDisplay =  document.getElementsByClassName("count-timer");
+var feedback =  document.getElementsByClassName("feedback");
+var score =  document.getElementsByClassName("score");
+var landingPage = document.getElementsByClassName("landing-main");
 
 //gen variables
 var score = 0;

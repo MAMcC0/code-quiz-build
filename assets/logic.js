@@ -1,23 +1,24 @@
-//questions div
-//list items of possible answers
-//endgame div
-//timer
+
+var questions = $('.question');
+var answerChoices = $('.answer-choice');
+var endGamePage = $('.endgame');
+var timerDisplay = $('#count-timer')
+var feedback = $(".feedback");
 
 
 //gen variables
+var score = timerDisplay;
 //score
 //time
 //timer
-//questions left (referencing indexes) var questionIndex = 0
-//feedback variable
+var questionsLeft = questions[i];
 
 
-
-// event listener for start button
-// reference for button
-// add event listener and function
 
 // on start button click startGame function
+function startQuiz(){
+
+}
 //start game function
 //hide intro start screen
 
@@ -77,3 +78,5 @@
 //pull scores from local storage div with ol make references to those in ol
 //order high scores from highest to lowest
 // need buttons for html for go back and clear local storage
+
+$('.start-button').click(startQuiz);

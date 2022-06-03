@@ -22,32 +22,32 @@ var questionsArray = [
     {
         question: "Which of the following is a primative data type in Javascript",
         possibleAns: ["sentence", "truthy", "int", "boolean"],
-        correctAns: "D"
+        correctAns: "boolean"
     },
     {
         question: "What are the two types of scope JavaScript uses",
         possibleAns: ["Global and Local", "Surrounding and Inner", "Abroad and Local", "Outside and Inside"],
-        correctAns: "A"
+        correctAns: "Global and Local"
     },
     {
         question: "We create a new branch off of our main branch with  'git branch test-branch'. How do we switch to our newly created branch?",
         possibleAns: ["git change test branch", "git commit test-branch", "git merge test-branch", "git checkout test-branch"],
-        correctAns: "D"
+        correctAns: "git checkout test-branch"
     },
     {
         question: "What value would we add to setInterval() if we want a function called, myTimer() to run every 3 seconds?",
         possibleAns: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)", "setInterval(myTimer, 30)"],
-        correctAns: "C"
+        correctAns: "setInterval(myTimer, 3000)"
     },
     {
         question: " You just finished the feature that you've been working on a successfully merged your branch, feature-52. How would you delete branch, feature-52?",
         possibleAns: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52", "git checkout feature-52"],
-        correctAns: "C"
+        correctAns: "git branch -d feature-52"
     },
     {
         question: "Which property can you use in order to implement event delegation?",
         possibleAns: ["event.addEventListener()", "event.target", "event.stopPropagation()", "event.preventDefault()"],
-        correctAns: "B"
+        correctAns: "event.target"
     }
 ];
 
@@ -88,32 +88,28 @@ function renderQuestions() {
         buttonEl.textContent = ans;
         
      }
-     questionsIndex ++;
-
+    
  }
 
 
+function checkAns(event){
+    var answerInput = event.target;
+    console.log(answerInput);
+     var answerCheck = answerInput.textContent;
+     console.log(answerCheck);
+    console.log(questionsArray[questionsIndex].correctAns);
+    if(answerCheck === questionsArray[questionsIndex].correctAns){
+        feedback[0].textContent  = "Good Job!";
+        
+    } else {
+        feedback[0].textContent  = "Wrong!";
+        time -= 10;
+    }
+    questionsIndex ++;
+    renderQuestions()
+    
+} 
 
-
-
-//reference index of question to display on screen
-//increment question index variable
-//grab html reference to header to attach question title to question[0].title append
-//grab html reference push question answers to an array loop through answers create list el or button and append to ul
-// add eventlistener to the answer choices/div that holds answer choices event.target matches the correct answer
-//function checkAnswer ()
-// variable selectedAnswer = event.target
-// if (selectedAnswer === question[0].correctAnswer)
-
-// provide correct feedback
-//Dom add in element 
-
-// else {
-//     //provide incorrect feedback
-//     //penalize time global time var and subtract time-= time taken off
-// }
-
-// function startTimer 
 function timer() {
     var timerInterval = setInterval(function () {
         time--;
@@ -143,11 +139,6 @@ function timer() {
 
     }, 1000)
 }
-
-// time --;
-// re render time on screen
-
-
 
 
 //end quiz function

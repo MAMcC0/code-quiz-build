@@ -5,11 +5,14 @@ var endGamePage = document.getElementsByClassName("endgame");
 var timerDisplay = document.getElementsByClassName("count-timer");
 var feedback = document.getElementsByClassName("feedback");
 var score = document.getElementsByClassName("score");
-var startbtn = document.getElementsByClassName("start-button");
+var startbtn = document.getElementById("start-button");
 var landingPage = document.getElementsByClassName("landing-main");
+var landing = document.getElementById("landing");
+var quesLanding= document.getElementById("quiz-card")
+var landingPara = document.getElementsByClassName("paragraph-description");
 var userInput = document.getElementsByClassName("user-input");
 var score = 0;
-var questionsLeft = questions[i];
+// var questionsLeft = questions[i];
 
 
 var questionsArray = [
@@ -53,13 +56,20 @@ var questionsArray = [
 
 // on start button click startGame function
 function startQuiz() {
-    if (questions.style.visibility === hidden && answerChoices.style.visibility === hidden){
-            questions.style.visibility = 'visibile';
-            answerChoices.style.visibility = 'visibile';
-            
-          
+    console.log("the startQuiz function has started")
+    if (quesLanding.style.display === "none"){
+            questions.setAttribute('style', "display: block");
+            answerChoices.setAttribute('style', "display: block");
+            landing.setAttribute('style', "display: none");
+            // landingPara.style.visibility = "hidden";
     }
+    renderQuestions();
+    startTimer();
        
+};
+
+function renderQuestions(){
+
 }
 //start game function
 //hide intro start screen

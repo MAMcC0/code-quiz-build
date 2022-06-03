@@ -19,7 +19,7 @@
     </header>
 
     <main>
-        <section class="landing-main">
+        <section class="landing-main" id="landing">
             <div>
                 <h1>Code Quiz</h1>
             </div>
@@ -30,14 +30,21 @@
                 </p>
             </div>
             <div>
-                <button class="start-button">Start</button>
+                <button id="start-button">Start</button>
             </div>
         </section >
-        <div class="quiz, title" hidden>
-            <h2 class="question" hidden></h2>
-            <ul class="answer-choice" hidden></ul>
+        <section id="quiz-card">
+        <div class="quiz title" hidden >
+            <h2 class="question"></h2>
+            <div class="answer-choice">
+                <button class="A"></button>
+                <button class="B"></button>
+                <button class="C"></button>
+                <button class="D"></button>
+            </div>
         </div>
         <div class="feedback" hidden></div>
+        <section id="endgame-card">
         <div class="endgame" hidden>
             <h2 hidden></h2>
             <p hidden></p>
@@ -46,6 +53,8 @@
             <input type="text" hidden>
             <button hidden></button>
         </div>
+    </section>
+    </section>
     </main>
 
 

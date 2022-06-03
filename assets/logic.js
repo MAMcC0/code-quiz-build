@@ -1,10 +1,11 @@
 
 var questions = document.getElementsByClassName("question");
-var answerChoices =  document.getElementsByClassName("answer-choice");
-var endGamePage =  document.getElementsByClassName("endgame");
-var timerDisplay =  document.getElementsByClassName("count-timer");
-var feedback =  document.getElementsByClassName("feedback");
-var score =  document.getElementsByClassName("score");
+var answerChoices = document.getElementsByClassName("answer-choice");
+var endGamePage = document.getElementsByClassName("endgame");
+var timerDisplay = document.getElementsByClassName("count-timer");
+var feedback = document.getElementsByClassName("feedback");
+var score = document.getElementsByClassName("score");
+var startbtn = document.getElementsByClassName("start-button");
 var landingPage = document.getElementsByClassName("landing-main");
 var userInput = document.getElementsByClassName("user-input");
 var score = 0;
@@ -12,34 +13,34 @@ var questionsLeft = questions[i];
 
 
 var questionsArray = [
-   {
+    {
         question1: "Which of the following is a primative data type in Javascript",
-        possibleAns1: ["sentence", "truthy", "int","boolean"],
+        possibleAns1: ["sentence", "truthy", "int", "boolean"],
         correctAns1: "D"
     },
     {
         question2: "What are the two types of scope JavaScript uses",
-        possibleAns2: ["Global and Local", "Surrounding and Inner", "Abroad and Local","Outside and Inside"],
+        possibleAns2: ["Global and Local", "Surrounding and Inner", "Abroad and Local", "Outside and Inside"],
         correctAns2: "A"
     },
     {
         question3: "We create a new branch off of our main branch with  'git branch test-branch'. How do we switch to our newly created branch?",
-        possibleAns3: ["git change test branch", "git commit test-branch", "git merge test-branch","git checkout test-branch"],
+        possibleAns3: ["git change test branch", "git commit test-branch", "git merge test-branch", "git checkout test-branch"],
         correctAns3: "D"
     },
     {
         question4: "What value would we add to setInterval() if we want a function called, myTimer() to run every 3 seconds?",
-        possibleAns4: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)","setInterval(myTimer, 30)"],
+        possibleAns4: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)", "setInterval(myTimer, 30)"],
         correctAns4: "C"
     },
     {
         question5: " You just finished the feature that you've been working on a successfully merged your branch, feature-52. How would you delete branch, feature-52?",
-        possibleAns5: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52","git checkout feature-52"],
+        possibleAns5: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52", "git checkout feature-52"],
         correctAns5: "C"
     },
     {
         question6: "Which property can you use in order to implement event delegation?",
-        possibleAns: ["event.addEventListener()", "event.target", "event.stopPropagation()","event.preventDefault()"],
+        possibleAns: ["event.addEventListener()", "event.target", "event.stopPropagation()", "event.preventDefault()"],
         correctAns: "B"
     }
 ];
@@ -51,9 +52,14 @@ var questionsArray = [
 
 
 // on start button click startGame function
-function startQuiz(){
-    if() 
-    score
+function startQuiz() {
+    if (questions.style.visibility === hidden && answerChoices.style.visibility === hidden){
+            questions.style.visibility = 'visibile';
+            answerChoices.style.visibility = 'visibile';
+            
+          
+    }
+       
 }
 //start game function
 //hide intro start screen
@@ -86,8 +92,8 @@ function startQuiz(){
 // variable selectedAnswer = event.target
 // if (selectedAnswer === question[0].correctAnswer)
 
-        // provide correct feedback
-        //Dom add in element 
+// provide correct feedback
+//Dom add in element 
 
 // else {
 //     //provide incorrect feedback
@@ -96,19 +102,20 @@ function startQuiz(){
 
 // function startTimer 
 function startTimer() {
-    
-    var timerInterval = setInterval(function(){
-      timerCount --;
-      timerElement.innerHTML = timerCount;
-      if(timerCount === 0){
-        clearInterval(timerInterval);
-        endQuiz();
-      }
-      if(isPassed){
-        clearInterval(timerInterval);
-      };
-    },1000)}
-    
+ console.log("This timer function has started")
+    var timerInterval = setInterval(function () {
+        timerCount--;
+        timerElement.innerHTML = timerCount;
+        if (timerCount === 0) {
+            clearInterval(timerInterval);
+            endQuiz();
+        }
+        if (isPassed) {
+            clearInterval(timerInterval);
+        };
+    }, 1000)
+}
+
 // time --;
 // re render time on screen
 
@@ -129,4 +136,4 @@ function startTimer() {
 //order high scores from highest to lowest
 // need buttons for html for go back and clear local storage
 
-$('.start-button').click(startQuiz);
+startbtn.addEventListener("click", startQuiz);

@@ -44,10 +44,15 @@ section h1 {
 section p {
     font-size: 1.5rem;
 }
-
-#quiz-card {
+.hide{
     display: none;
 }
+.show{
+    display: block;
+}
+/* #quiz-card {
+    display: none;
+} */
 
 #endgame-card{
     display:none;

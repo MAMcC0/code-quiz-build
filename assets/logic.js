@@ -1,6 +1,7 @@
 
-var questions = document.getElementsByClassName("question");
-var answerChoices = document.getElementsByClassName("answer-choice");
+//  var questions = document.querySelector("hide");
+var questionHead = document.querySelector('.question');
+var answerChoices = document.querySelector("#answers");
 var endGamePage = document.getElementsByClassName("endgame");
 var timerText = document.querySelector(".text-timer");
 var timerDisplay=document.querySelector(".count-timer")
@@ -9,12 +10,12 @@ var score = document.getElementsByClassName("score");
 var startbtn = document.getElementById("start-button");
 var landingPage = document.getElementsByClassName("landing-main");
 var landing = document.getElementById("landing");
-var quesLanding = document.getElementById("quiz-card")
+var quesLanding = document.getElementById("quiz-card");
 var landingPara = document.getElementsByClassName("paragraph-description");
 var userInput = document.getElementsByClassName("user-input");
 var score = 0;
 var time = 70;
-// var questionsLeft = questions[i];
+var questionsIndex = 0;
 
 
 var questionsArray = [
@@ -57,12 +58,16 @@ var questionsArray = [
 
 // on start button click startGame function
 function startQuiz() {
+    // debugger;
     console.log("startQuiz has started")
-    if (quesLanding.style.display === "none") {
-        questions.setAttribute('style', "display: block");
-        answerChoices.setAttribute('style', "display: block");
-        landing.setAttribute('style', "display: none");
-        landingPara.setAttribute('style', "display: none");
+    console.log(quesLanding.style);
+    if (quesLanding.className === "hide") {
+        console.log(quesLanding.style.display);
+        //target css instead of html
+        quesLanding.className = "show";
+        answerChoices.className = "show";
+        landing.className = "hide";
+        landingPara.className = "hide";
         
     }
     renderQuestions();
@@ -71,38 +76,23 @@ function startQuiz() {
 };
 
 function renderQuestions() {
+    var questionDisplay = questionsArray[questionsIndex].question;
+    questionHead.textContent = questionDisplay;
    
-    console.log("rendQuest function has started");
-    //  questionsArray.forEach(questions => {
-    //      for (let question in questions) {
-    //          questions.innerHTML = question;
-    //          console.log(question)
-    //      }
-    //  })
-    //  questionsArray.forEach(answerChoices => {
-    //      for (let possibleAns in answerChoices) {
-    //          answerChoices.innerHTML = possibleAns;
-    //          console.log(possibleAns);
-    //      }
-    //  })
-    
-     
-      for(var i = 0; i < questionsArray.length; i++){
-          var questionDisplay = questionsArray[i].question;
+    console.log("rendQuest function has started");  
+    var answersLength = questionsArray[questionsIndex].possibleAns.length;
+    console.log(answersLength);
+     for(var i = 0; i < answersLength; i++ ){
+        var buttonEl = document.getElementById(i);
+        var ans = questionsArray[questionsIndex].possibleAns[i];
+        buttonEl.textContent = ans;
+        
+     }
+     questionsIndex ++;
 
-         questionDisplay = questions;
-
-          console.log(questionDisplay)
-      }
  }
 
 
-//render first question to the screen, show multiple choice answers
-//call funtion 
-
-
-//timer starts timer = setInterval(function(),1000)
-//time display
 
 
 
@@ -173,3 +163,4 @@ function timer() {
 // need buttons for html for go back and clear local storage
 
 startbtn.addEventListener("click", startQuiz);
+answerChoices.addEventListener("click", checkAns);

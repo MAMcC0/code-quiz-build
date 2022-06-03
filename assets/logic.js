@@ -2,7 +2,8 @@
 var questions = document.getElementsByClassName("question");
 var answerChoices = document.getElementsByClassName("answer-choice");
 var endGamePage = document.getElementsByClassName("endgame");
-var timerDisplay = document.getElementsByClassName("count-timer");
+var timerText = document.querySelector(".text-timer");
+var timerDisplay=document.querySelector(".count-timer")
 var feedback = document.getElementsByClassName("feedback");
 var score = document.getElementsByClassName("score");
 var startbtn = document.getElementById("start-button");
@@ -56,12 +57,13 @@ var questionsArray = [
 
 // on start button click startGame function
 function startQuiz() {
-    console.log("the startQuiz function has started")
+    console.log("startQuiz has started")
     if (quesLanding.style.display === "none") {
         questions.setAttribute('style', "display: block");
         answerChoices.setAttribute('style', "display: block");
         landing.setAttribute('style', "display: none");
-        // landingPara.style.visibility = "hidden";
+        landingPara.setAttribute('style', "display: none");
+        
     }
     renderQuestions();
     timer();
@@ -69,28 +71,29 @@ function startQuiz() {
 };
 
 function renderQuestions() {
-
-     questionsArray.forEach(questions => {
-         for (let question in questions) {
-             questions.innerHTML = question;
-             console.log(question)
-         }
-     })
-     questionsArray.forEach(answerChoices => {
-         for (let possibleAns in answerChoices) {
-             answerChoices.innerHTML = possibleAns;
-             console.log(possibleAns);
-         }
-     })
+   
+    console.log("rendQuest function has started");
+    //  questionsArray.forEach(questions => {
+    //      for (let question in questions) {
+    //          questions.innerHTML = question;
+    //          console.log(question)
+    //      }
+    //  })
+    //  questionsArray.forEach(answerChoices => {
+    //      for (let possibleAns in answerChoices) {
+    //          answerChoices.innerHTML = possibleAns;
+    //          console.log(possibleAns);
+    //      }
+    //  })
     
      
-//      for(var i = 0; i < questionsArray.length; i++){
-//          var questionDisplay = questionsArray.question[i];
+      for(var i = 0; i < questionsArray.length; i++){
+          var questionDisplay = questionsArray[i].question;
 
-//          questionDisplay = questions;
+         questionDisplay = questions;
 
-//          console.log(questionDisplay)
-//      }
+          console.log(questionDisplay)
+      }
  }
 
 
@@ -122,10 +125,9 @@ function renderQuestions() {
 
 // function startTimer 
 function timer() {
-    console.log("This timer function has started")
     var timerInterval = setInterval(function () {
         time--;
-        timerDisplay.textContent = time;
+        timerText.textContent = "Time:" + time;
         
         if (time === 0) {
             clearInterval(timerInterval);
@@ -142,13 +144,13 @@ function timer() {
             headsUp.appendChild(headsText);
             quesLanding.appendChild(headsUp)
         }
-        if (time >= 0){
-            if (endGamePage && time > 0){
-                clearInterval(timerInterval);
-                storeScore();
-            }
-        }
-        
+        // if (time >= 0){
+        //     if (endGamePage && time > 0){
+        //         clearInterval(timerInterval);
+        //         storeScore();
+        //     }
+        // }
+
     }, 1000)
 }
 

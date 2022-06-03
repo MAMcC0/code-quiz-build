@@ -8,41 +8,42 @@ var score = document.getElementsByClassName("score");
 var startbtn = document.getElementById("start-button");
 var landingPage = document.getElementsByClassName("landing-main");
 var landing = document.getElementById("landing");
-var quesLanding= document.getElementById("quiz-card")
+var quesLanding = document.getElementById("quiz-card")
 var landingPara = document.getElementsByClassName("paragraph-description");
 var userInput = document.getElementsByClassName("user-input");
 var score = 0;
+var time = 70;
 // var questionsLeft = questions[i];
 
 
 var questionsArray = [
     {
-        question1: "Which of the following is a primative data type in Javascript",
-        possibleAns1: ["sentence", "truthy", "int", "boolean"],
-        correctAns1: "D"
+        question: "Which of the following is a primative data type in Javascript",
+        possibleAns: ["sentence", "truthy", "int", "boolean"],
+        correctAns: "D"
     },
     {
-        question2: "What are the two types of scope JavaScript uses",
-        possibleAns2: ["Global and Local", "Surrounding and Inner", "Abroad and Local", "Outside and Inside"],
-        correctAns2: "A"
+        question: "What are the two types of scope JavaScript uses",
+        possibleAns: ["Global and Local", "Surrounding and Inner", "Abroad and Local", "Outside and Inside"],
+        correctAns: "A"
     },
     {
-        question3: "We create a new branch off of our main branch with  'git branch test-branch'. How do we switch to our newly created branch?",
-        possibleAns3: ["git change test branch", "git commit test-branch", "git merge test-branch", "git checkout test-branch"],
-        correctAns3: "D"
+        question: "We create a new branch off of our main branch with  'git branch test-branch'. How do we switch to our newly created branch?",
+        possibleAns: ["git change test branch", "git commit test-branch", "git merge test-branch", "git checkout test-branch"],
+        correctAns: "D"
     },
     {
-        question4: "What value would we add to setInterval() if we want a function called, myTimer() to run every 3 seconds?",
-        possibleAns4: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)", "setInterval(myTimer, 30)"],
-        correctAns4: "C"
+        question: "What value would we add to setInterval() if we want a function called, myTimer() to run every 3 seconds?",
+        possibleAns: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)", "setInterval(myTimer, 30)"],
+        correctAns: "C"
     },
     {
-        question5: " You just finished the feature that you've been working on a successfully merged your branch, feature-52. How would you delete branch, feature-52?",
-        possibleAns5: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52", "git checkout feature-52"],
-        correctAns5: "C"
+        question: " You just finished the feature that you've been working on a successfully merged your branch, feature-52. How would you delete branch, feature-52?",
+        possibleAns: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52", "git checkout feature-52"],
+        correctAns: "C"
     },
     {
-        question6: "Which property can you use in order to implement event delegation?",
+        question: "Which property can you use in order to implement event delegation?",
         possibleAns: ["event.addEventListener()", "event.target", "event.stopPropagation()", "event.preventDefault()"],
         correctAns: "B"
     }
@@ -53,26 +54,45 @@ var questionsArray = [
 
 
 
-
 // on start button click startGame function
 function startQuiz() {
     console.log("the startQuiz function has started")
-    if (quesLanding.style.display === "none"){
-            questions.setAttribute('style', "display: block");
-            answerChoices.setAttribute('style', "display: block");
-            landing.setAttribute('style', "display: none");
-            // landingPara.style.visibility = "hidden";
+    if (quesLanding.style.display === "none") {
+        questions.setAttribute('style', "display: block");
+        answerChoices.setAttribute('style', "display: block");
+        landing.setAttribute('style', "display: none");
+        // landingPara.style.visibility = "hidden";
     }
     renderQuestions();
-    startTimer();
-       
+    timer();
+
 };
 
-function renderQuestions(){
+function renderQuestions() {
 
-}
-//start game function
-//hide intro start screen
+     questionsArray.forEach(questions => {
+         for (let question in questions) {
+             questions.innerHTML = question;
+             console.log(question)
+         }
+     })
+     questionsArray.forEach(answerChoices => {
+         for (let possibleAns in answerChoices) {
+             answerChoices.innerHTML = possibleAns;
+             console.log(possibleAns);
+         }
+     })
+    
+     
+//      for(var i = 0; i < questionsArray.length; i++){
+//          var questionDisplay = questionsArray.question[i];
+
+//          questionDisplay = questions;
+
+//          console.log(questionDisplay)
+//      }
+ }
+
 
 //render first question to the screen, show multiple choice answers
 //call funtion 
@@ -81,16 +101,6 @@ function renderQuestions(){
 //timer starts timer = setInterval(function(),1000)
 //time display
 
-//rend question function
-// change hidden value of questions div
-// variable with an array of object
-// var questions = [
-//     {
-//         title: "JS question",
-//         answerChoices: [1,2,3,4],
-//         correctAnswer: "answer"
-//     }
-// ]
 
 
 //reference index of question to display on screen
@@ -111,28 +121,42 @@ function renderQuestions(){
 // }
 
 // function startTimer 
-function startTimer() {
- console.log("This timer function has started")
+function timer() {
+    console.log("This timer function has started")
     var timerInterval = setInterval(function () {
-        timerCount--;
-        timerElement.innerHTML = timerCount;
-        if (timerCount === 0) {
+        time--;
+        timerDisplay.textContent = time;
+        
+        if (time === 0) {
             clearInterval(timerInterval);
-            endQuiz();
+            var headsUp = document.createElement('h3');
+            var headsText = document.createTextNode("Time's Up!");
+            headsUp.appendChild(headsText);
+            quesLanding.appendChild(headsUp)
+            endQuiz()
+            storeScore();
         }
-        if (isPassed) {
-            clearInterval(timerInterval);
-        };
+        if (time === 10) {
+            var headsUp = document.createElement('h3');
+            var headsText = document.createTextNode("You're almost out of time!");
+            headsUp.appendChild(headsText);
+            quesLanding.appendChild(headsUp)
+        }
+        if (time >= 0){
+            if (endGamePage && time > 0){
+                clearInterval(timerInterval);
+                storeScore();
+            }
+        }
+        
     }, 1000)
 }
 
 // time --;
 // re render time on screen
 
-//warning close to zero
 
-// check timer if statement
-// if time === 0, clearInterval then end quiz else keep running this function
+
 
 //end quiz function
 //hide question and display intial forms

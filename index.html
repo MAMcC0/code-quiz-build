@@ -12,8 +12,11 @@
 
 <body>
     <header>
-        <div><a href="./assets/highscores.html">Highscores</a></div>
-        <div><span class="score"></span></div>
+        <div class="show" id="high-link"><a href="./assets/highscores.html">Highscores</a></div>
+        <div>
+            <p>Score:</p>
+            <span class="score show"></span>
+        </div>
         <div class="text-timer show">
             <div id="count-timer">Time:70</div>
         </div>
@@ -55,6 +58,16 @@
                 <label for="initials" class="user-input" placeholder="MM">Type your initials here:</label>
                 <input type="text" id="initials">
                 <button id="score-submit">Submit</button>
+            </div>
+        </section>
+        <section id="highscore-card" class="hide">
+            <h3 class="highcscore-title">Highscores</h3>
+            <ol class="highscore-list">
+
+            </ol>
+            <div>
+                <button class="go-back">Back to Start</button>
+                <button class="reset">Reset</button>
             </div>
         </section>
         </section>

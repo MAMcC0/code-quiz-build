@@ -16,9 +16,14 @@ var landing = document.getElementById("landing");
 var quesLanding = document.getElementById("quiz-card");
 var landingPara = document.getElementsByClassName("paragraph-description");
 var highscoreDisplay = JSON.parse(localStorage.getItem("scoreStored"));
+var scoreLanding = document.querySelector("#highscore-card");
+var highscoreLink = document.querySelector("#high-link");
+var highscoreOl = document.querySelector(".highscore-list");
 var score = 0;
 var time = 70;
 var questionsIndex = 0;
+var scoreSpliceStart = 0;
+var scoreIndex = 2;
 
 
 var questionsArray = [
@@ -59,7 +64,7 @@ var questionsArray = [
 
 // on start button click startGame function
 function startQuiz() {
-    
+    // debugger;
     console.log("startQuiz has started")
     console.log(quesLanding.style);
     if (quesLanding.className === "hide") {
@@ -89,6 +94,7 @@ function renderQuestions() {
         
      }
     if(questionsIndex === 5){
+        time = 0;
         endQuiz();
     
  }
@@ -110,9 +116,9 @@ function checkAns(event){
         score -= 5;
         time -= 10;
     }
-    if (questionsIndex === 5){
-        endQuiz();
-    }
+    // if (questionsIndex === 5){
+    //     endQuiz();
+    //}
     questionsIndex ++;
     renderQuestions()
     
@@ -125,7 +131,7 @@ function timer() {
         time--;
         timerText.textContent = "Time:" + time;
         
-        if (time === 0) {
+        if (time === 0 || questionsIndex === 5) {
             clearInterval(timerInterval);
             var headsUp = document.createElement('h3');
             var headsText = document.createTextNode("Time's Up!");
@@ -166,14 +172,41 @@ function storeScore(){
     storageArray.push(userInput);
     console.log(storageArray);
     localStorage.setItem("scoreStored", JSON.stringify(storageArray));
+    if (scoreLanding.className === "hide"){
+        endGameCard.className = "hide";
+        endGamePage.className = "hide";
+        highscoreLink.className = "hide";
+        scoreLanding.classList = "show";
+        scoresRender();
+    }
+}
+
+function scoresRender(){
+    for (i = 0; i <= highscoreDisplay.length; i++){
+      var scoreNameDis =  highscoreDisplay.slice(scoreSpliceStart,scoreIndex);
+      var scoreNameDisName = document.createTextNode(scoreNameDis[0] + "- " + scoreNameDis[1]);
+      var liEl = document.createElement("li");
+      liEl.appendChild(scoreNameDisName);
+      highscoreOl.appendChild(liEl);
+      
+      scoreSpliceStart += 2;
+      scoreIndex += 2;
+      if (scoreIndex > highscoreDisplay.length){
+           scoreSpliceStart = -2;
+          scoreIndex = -1;
+          scoreNameDis = highscoreDisplay.slice(scoreSpliceStart,scoreIndex);
+      };
+      
+      
+    }
+
+    // renderDisplay.onload = function();
 }
 
 
-
-
-//getItem JSON.parse
-
-// Highscores page
+// highscore render 
+// loop through creation of li score and name appended together from array in display?
+//append child to ol
 //pull scores from local storage div with ol make references to those in ol
 //order high scores from highest to lowest
 // need buttons for html for go back and clear local storage

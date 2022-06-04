@@ -15,7 +15,7 @@ var landingPage = document.getElementsByClassName("landing-main");
 var landing = document.getElementById("landing");
 var quesLanding = document.getElementById("quiz-card");
 var landingPara = document.getElementsByClassName("paragraph-description");
-
+var highscoreDisplay = JSON.parse(localStorage.getItem("scoreStored"));
 var score = 0;
 var time = 70;
 var questionsIndex = 0;
@@ -169,8 +169,9 @@ function storeScore(){
 }
 
 
+
+
 //getItem JSON.parse
-//stores score in an array and stringify to put in local storage pass the most rcent to array and store again
 
 // Highscores page
 //pull scores from local storage div with ol make references to those in ol

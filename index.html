@@ -12,7 +12,7 @@
     <header>
         <div><a href="./assets/highscores.html">Highscores</a></div>
         <div class="score"><span>Score:</span></div>
-            <div class="text-timer">
+            <div class="text-timer show" >
                 <div id="count-timer">Time:70</div>
             </div>
         
@@ -43,16 +43,16 @@
                 <button  id = "3">D</button>
             </div>
         </div>
-        <div><span class="feedback">dfsdfsd</span></div>
+        <div><span class="feedback"></span></div>
         </section>
         <section id="endgame-card" class="hide">
-        <div class="endgame" hidden>
-            <h2 hidden></h2>
-            <p hidden></p>
+        <div class="endgame" class = "hide">
+            <h2 id="endgame-header">Congrats! You finished the quiz!</h2>
+            <p id="endgame-desc"></p>
             <!-- grab remaining time for score -->
-            <label for="initials" class= "user-input" hidden></label>
-            <input type="text" hidden>
-            <button hidden></button>
+            <label for="initials" class= "user-input" placeholder = "MM">Type your initials here:</label>
+            <input type="text" id="initials">
+            <button id="score-submit">Submit</button>
         </div>
     </section>
     </section>

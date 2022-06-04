@@ -2,9 +2,10 @@
 //  var questions = document.querySelector("hide");
 var questionHead = document.querySelector('.question');
 var answerChoices = document.querySelector("#answers");
-var endGamePage = document.getElementsByClassName("endgame");
+var endGameCard = document.querySelector("#endgame-card");
+var endGamePage = document.querySelector(".endgame");
 var timerText = document.querySelector(".text-timer");
-var timerDisplay=document.querySelector(".count-timer")
+var timerDisplay= document.querySelector("#count-timer")
 var feedback = document.getElementsByClassName("feedback");
 var score = document.getElementsByClassName("score");
 var startbtn = document.getElementById("start-button");
@@ -22,43 +23,41 @@ var questionsArray = [
     {
         question: "Which of the following is a primative data type in Javascript",
         possibleAns: ["sentence", "truthy", "int", "boolean"],
-        correctAns: "boolean"
+        correctAns: "boolean",
     },
     {
         question: "What are the two types of scope JavaScript uses",
         possibleAns: ["Global and Local", "Surrounding and Inner", "Abroad and Local", "Outside and Inside"],
-        correctAns: "Global and Local"
+        correctAns: "Global and Local",
     },
     {
         question: "We create a new branch off of our main branch with  'git branch test-branch'. How do we switch to our newly created branch?",
         possibleAns: ["git change test branch", "git commit test-branch", "git merge test-branch", "git checkout test-branch"],
-        correctAns: "git checkout test-branch"
+        correctAns: "git checkout test-branch",
     },
     {
         question: "What value would we add to setInterval() if we want a function called, myTimer() to run every 3 seconds?",
         possibleAns: ["setInterval(myTimer, 3)", "setInterval(myTimer, 300)", "setInterval(myTimer, 3000)", "setInterval(myTimer, 30)"],
-        correctAns: "setInterval(myTimer, 3000)"
+        correctAns: "setInterval(myTimer, 3000)",
     },
     {
         question: " You just finished the feature that you've been working on a successfully merged your branch, feature-52. How would you delete branch, feature-52?",
         possibleAns: ["git branch feature-52", "git merge feature-52", "git branch -d feature-52", "git checkout feature-52"],
-        correctAns: "git branch -d feature-52"
+        correctAns: "git branch -d feature-52",
     },
     {
         question: "Which property can you use in order to implement event delegation?",
         possibleAns: ["event.addEventListener()", "event.target", "event.stopPropagation()", "event.preventDefault()"],
-        correctAns: "event.target"
+        correctAns: "event.target",
     }
 ];
 
 
 
 
-
-
 // on start button click startGame function
 function startQuiz() {
-    // debugger;
+    
     console.log("startQuiz has started")
     console.log(quesLanding.style);
     if (quesLanding.className === "hide") {
@@ -81,29 +80,33 @@ function renderQuestions() {
    
     console.log("rendQuest function has started");  
     var answersLength = questionsArray[questionsIndex].possibleAns.length;
-    console.log(answersLength);
      for(var i = 0; i < answersLength; i++ ){
         var buttonEl = document.getElementById(i);
         var ans = questionsArray[questionsIndex].possibleAns[i];
         buttonEl.textContent = ans;
         
      }
+    if(questionsIndex === 5){
+        endQuiz();
     
  }
+}
 
 
 function checkAns(event){
     var answerInput = event.target;
-    console.log(answerInput);
      var answerCheck = answerInput.textContent;
-     console.log(answerCheck);
-    console.log(questionsArray[questionsIndex].correctAns);
+     
     if(answerCheck === questionsArray[questionsIndex].correctAns){
+        console.log(questionsArray[questionsIndex].correctAns);
         feedback[0].textContent  = "Good Job!";
         
     } else {
         feedback[0].textContent  = "Wrong!";
         time -= 10;
+    }
+    if (questionsIndex === 5){
+        endQuiz();
     }
     questionsIndex ++;
     renderQuestions()
@@ -122,7 +125,7 @@ function timer() {
             headsUp.appendChild(headsText);
             quesLanding.appendChild(headsUp)
             endQuiz()
-            storeScore();
+            // storeScore();
         }
         if (time === 10) {
             var headsUp = document.createElement('h3');
@@ -140,6 +143,19 @@ function timer() {
     }, 1000)
 }
 
+function endQuiz(){
+    console.log("endGame function has started");
+    if (endGameCard.className === "hide") {
+        quesLanding.className = "hide";
+        answerChoices.className = "hide";
+        timerText.className = "hide";
+        endGameCard.className = "show";
+        endGamePage.className = "show";
+        console.log(endGameCard);
+        
+
+}
+}
 
 //end quiz function
 //hide question and display intial forms

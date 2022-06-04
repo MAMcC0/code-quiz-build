@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,15 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>Code Quiz</title>
 </head>
+
 <body>
     <header>
         <div><a href="./assets/highscores.html">Highscores</a></div>
-        <div class="score"><span>Score:</span></div>
-            <div class="text-timer show" >
-                <div id="count-timer">Time:70</div>
-            </div>
-        
+        <div><span class="score"></span></div>
+        <div class="text-timer show">
+            <div id="count-timer">Time:70</div>
+        </div>
+
     </header>
 
     <main>
@@ -32,30 +34,30 @@
             <div>
                 <button id="start-button">Start</button>
             </div>
-        </section >
+        </section>
         <section id="quiz-card" class="hide">
-        <div class="quiz title" >
-            <h2 class="question">Is this working?</h2>
-            <div class="answer-choice" id="answers">
-                <button  id = "0">A</button>
-                <button id = "1">B</button>
-                <button  id = "2">C</button>
-                <button  id = "3">D</button>
+            <div class="quiz title">
+                <h2 class="question"><h2>
+                <div class="answer-choice" id="answers">
+                    <button id="0">A</button>
+                    <button id="1">B</button>
+                    <button id="2">C</button>
+                    <button id="3">D</button>
+                </div>
             </div>
-        </div>
-        <div><span class="feedback"></span></div>
+            <div><span class="feedback"></span></div>
         </section>
         <section id="endgame-card" class="hide">
-        <div class="endgame" class = "hide">
-            <h2 id="endgame-header">Congrats! You finished the quiz!</h2>
-            <p id="endgame-desc"></p>
-            <!-- grab remaining time for score -->
-            <label for="initials" class= "user-input" placeholder = "MM">Type your initials here:</label>
-            <input type="text" id="initials">
-            <button id="score-submit">Submit</button>
-        </div>
-    </section>
-    </section>
+            <div class="endgame" class="hide">
+                <h2 id="endgame-header">Congrats! You finished the quiz!</h2>
+                <p id="endgame-desc"></p>
+                <!-- grab remaining time for score -->
+                <label for="initials" class="user-input" placeholder="MM">Type your initials here:</label>
+                <input type="text" id="initials">
+                <button id="score-submit">Submit</button>
+            </div>
+        </section>
+        </section>
     </main>
 
 
@@ -63,7 +65,8 @@
 
 
 
-  
+
     <script src="./assets/logic.js"></script>
 </body>
+
 </html>

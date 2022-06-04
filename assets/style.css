@@ -28,7 +28,7 @@ header a {
     color: var(--element-background);
 }
 
-section {
+.landing-main {
     position: absolute;
     left: 50%;
     top: 50%;

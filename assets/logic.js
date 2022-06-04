@@ -4,16 +4,18 @@ var questionHead = document.querySelector('.question');
 var answerChoices = document.querySelector("#answers");
 var endGameCard = document.querySelector("#endgame-card");
 var endGamePage = document.querySelector(".endgame");
+var endGameScore = document.querySelector(".endgame-desc");
 var timerText = document.querySelector(".text-timer");
 var timerDisplay= document.querySelector("#count-timer")
 var feedback = document.getElementsByClassName("feedback");
-var score = document.getElementsByClassName("score");
+var scoreDisplay = document.querySelector(".score");
+var initialSubmit = document.querySelector("#score-submit");
 var startbtn = document.getElementById("start-button");
 var landingPage = document.getElementsByClassName("landing-main");
 var landing = document.getElementById("landing");
 var quesLanding = document.getElementById("quiz-card");
 var landingPara = document.getElementsByClassName("paragraph-description");
-var userInput = document.getElementsByClassName("user-input");
+
 var score = 0;
 var time = 70;
 var questionsIndex = 0;
@@ -98,11 +100,14 @@ function checkAns(event){
      var answerCheck = answerInput.textContent;
      
     if(answerCheck === questionsArray[questionsIndex].correctAns){
-        console.log(questionsArray[questionsIndex].correctAns);
         feedback[0].textContent  = "Good Job!";
+        score += 10;
+        scoreDisplay.textContent = score;
+        
         
     } else {
         feedback[0].textContent  = "Wrong!";
+        score -= 5;
         time -= 10;
     }
     if (questionsIndex === 5){
@@ -112,6 +117,8 @@ function checkAns(event){
     renderQuestions()
     
 } 
+
+
 
 function timer() {
     var timerInterval = setInterval(function () {
@@ -133,12 +140,6 @@ function timer() {
             headsUp.appendChild(headsText);
             quesLanding.appendChild(headsUp)
         }
-        // if (time >= 0){
-        //     if (endGamePage && time > 0){
-        //         clearInterval(timerInterval);
-        //         storeScore();
-        //     }
-        // }
 
     }, 1000)
 }
@@ -151,16 +152,23 @@ function endQuiz(){
         timerText.className = "hide";
         endGameCard.className = "show";
         endGamePage.className = "show";
-        console.log(endGameCard);
+        scoreDisplay.textContent = "Final score:" + score;
         
 
 }
 }
 
-//end quiz function
-//hide question and display intial forms
-//display final score
-//eventListener intials and score to local storage setItem("key",value)
+
+function storeScore(){
+    var userInput = document.querySelector("#initials").value;
+    var storageArray = [];
+    storageArray.push(score);
+    storageArray.push(userInput);
+    console.log(storageArray);
+    localStorage.setItem("scoreStored", JSON.stringify(storageArray));
+}
+
+
 //getItem JSON.parse
 //stores score in an array and stringify to put in local storage pass the most rcent to array and store again
 
@@ -171,3 +179,4 @@ function endQuiz(){
 
 startbtn.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAns);
+initialSubmit.addEventListener("click", storeScore);

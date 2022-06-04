@@ -161,7 +161,7 @@ function endQuiz(){
 
 function storeScore(){
     var userInput = document.querySelector("#initials").value;
-    var storageArray = [];
+    var storageArray = JSON.parse(localStorage.getItem("scoreStored")) || [];
     storageArray.push(score);
     storageArray.push(userInput);
     console.log(storageArray);

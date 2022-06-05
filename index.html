@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://meyerweb.com/eric/tools/css/reset/reset.css ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
     <title>Code Quiz</title>
 </head>
 
 <body>
     <header>
-        <div class="show" id="high-link"><a href="./assets/highscores.html">Highscores</a></div>
+        <div class="show" id="high-link"><a href="#highscore-card">Highscores</a></div>
         <div>
-            <p>Score:</p>
             <span class="score show"></span>
         </div>
         <div class="text-timer show">
@@ -24,7 +26,7 @@
     </header>
 
     <main>
-        <section class="landing-main" id="landing">
+        <section class="landing-main show" id="landing">
             <div>
                 <h1>Code Quiz</h1>
             </div>
@@ -34,7 +36,7 @@
                     answer right the timer will add 5 seconds to your time.
                 </p>
             </div>
-            <div>
+            <div id="style-start">
                 <button id="start-button">Start</button>
             </div>
         </section>
@@ -48,16 +50,18 @@
                     <button id="3">D</button>
                 </div>
             </div>
-            <div><span class="feedback"></span></div>
+            <div id="feedback-style"><span class="feedback"></span></div>
         </section>
         <section id="endgame-card" class="hide">
-            <div class="endgame" class="hide">
+            <div class="endgame hide" id="end-style">
                 <h2 id="endgame-header">Congrats! You finished the quiz!</h2>
                 <p id="endgame-desc"></p>
                 <!-- grab remaining time for score -->
-                <label for="initials" class="user-input" placeholder="MM">Type your initials here:</label>
+                <label for="initials" class="user-input">Type your initials here:</label>
                 <input type="text" id="initials">
+                <div id="submit-style">
                 <button id="score-submit">Submit</button>
+            </div>
             </div>
         </section>
         <section id="highscore-card" class="hide">
@@ -65,7 +69,7 @@
             <ol class="highscore-list">
 
             </ol>
-            <div>
+            <div id="twobtn-style">
                 <button class="go-back">Back to Start</button>
                 <button class="reset">Reset</button>
             </div>

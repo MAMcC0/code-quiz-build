@@ -106,7 +106,7 @@ function startQuiz() {
 function renderQuestions() {
   var questionDisplay = questionsArray[questionsIndex].question;
   questionHead.textContent = questionDisplay;
-
+    
   console.log("rendQuest function has started");
   var answersLength = questionsArray[questionsIndex].possibleAns.length;
   for (var i = 0; i < answersLength; i++) {
@@ -180,10 +180,10 @@ function storeScore() {
 
   var userInput = document.querySelector("#initials").value;
   var storedArray = [];
-  for(i=0; i < storedArray[inputIndex]; i++)
+ 
   var storageArray = {
     scoreDis: score,
-    initials: userInput,
+    initials: userInput
   };
   storedArray.push(storageArray);
 
@@ -207,15 +207,31 @@ function scoresRender() {
     
     for (i = 0; i <= storageArray.length; i++) {
     var scoreNameDisName = document.createTextNode(
-      storageArray.scoreDis + "- " + storageArray.initials
+      storageArray[i].scoreDis + "- " + storageArray[i].initials
     );
     console.log(storageArray.scoreDis);
     var liEl = document.createElement("li");
     liEl.appendChild(scoreNameDisName);
     highscoreOl.appendChild(liEl);
+    
   }
 
   // renderDisplay.onload = function();
+}
+
+function toHighScores(){
+    if (scoreLanding.className === "hide") {
+        quesLanding.className = "hide";
+        answerChoices.className = "hide";
+        timerText.className = "hide";
+        endGameCard.className = "hide";
+        endGamePage.className = "hide";
+        highscoreLink.className = "hide";
+        landing.className = "hide";
+        landingPara.className = "hide";
+        scoreLanding.classList = "show";
+        scoresRender();
+}
 }
 
 // highscore render
@@ -228,3 +244,4 @@ function scoresRender() {
 startbtn.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAns);
 initialSubmit.addEventListener("click", storeScore);
+highscoreLink.addEventListener("click", toHighScores);

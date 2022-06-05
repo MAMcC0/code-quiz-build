@@ -1,31 +1,39 @@
 :root {
-    --element-background: #2C423F;
-    --light-gray: #829191;
-    --silver: #fffffff8;
+    --element-background: #EBF5DF;
+    --orangyt: #E8871E;
+    --greyish: #e9e9c5;
+    --ligher-orange: #EDB458;
 }
 
 * {
     margin: 0;
     padding: 0;
-    background-color: var(--silver);
+    background-color: var(--element-background);
 }
 
 html {
     font-size: 62.5%;
 }
 
+button {
+    background-color: var(--ligher-orange);
+    font-size: 1.5rem;
+    padding: 2% 5%;
+    font-family: 'Dosis', sans-serif;
+}
+
 header {
     display: flex;
     justify-content: space-between;
-    background-color: var(--silver);
-    color: var(--element-background);
+    background-color: var(--element-background);
+    color: var(--orangyt);
     padding: 20px;
     font-size: 1.75rem;
 }
 
 header a {
     text-decoration: none;
-    color: var(--element-background);
+    color: var(--orangyt);
 }
 
 section {
@@ -36,23 +44,88 @@ section {
     border: 1px solid #b7caca;
     text-align: center;
     padding: 10px;
+    background-color: var(--orangyt);
+    
 }
-section h1 {
+section h1,h2,h3 {
     font-size: 2rem;
+    background-color: var(--orangyt);
+    color: var(--greyish);
+    font-family: 'Bebas Neue', cursive;
 }
 
 section p {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    font-family:'Dosis', sans-serif;
+    padding: 10%;
+    background-color: var(--orangyt);
+    color: var(--greyish);
 }
+
 ol {
     list-style-type: decimal;
 }
+
 .hide{
     display: none;
+}
+.highscore-title{
+    font-size: 2.5rem;
+}
+
+div #answers{
+    background-color: var(--orangyt);
+    padding: 2%;
+}
+
+div .feedback{
+    background-color: var(--orangyt);
+    color: black;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
 }
 .show{
     display: block;
 }
+.user-input{
+    background-color: var(--orangyt);
+    font-family: "Bebas Neue", cursive;
+    padding: 2%;
+    font-size: 1.75rem;
+}
+
+#highscore-card {
+    padding: 7%;
+    justify-content: space-evenly;
+}
+section ol li {
+    background-color: var(--orangyt);
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+}
+#initials{
+    margin: 5%;
+}
+#style-start, #submit-style, #feedback-style,
+#end-style, .answer-choice {
+    background-color: var(--orangyt);
+} 
+#twobtn-style{
+    background-color: var(--orangyt);
+    
+}
+
 /* #quiz-card {
     display: none;
 } */
+button:active{
+    color:white;
+}
+
+button:hover{
+    color:white;
+}
+
+a:hover{
+    color:black;
+}

@@ -7,7 +7,8 @@ Everyone knows that technical aspects of any developer interview can be stressfu
 HTML, CSS, Javascript
 
 ## Links
-
+Repo: https://github.com/MAMcC0/technical-questions-quiz
+Live Site: https://mamcc0.github.io/technical-questions-quiz/
 
 ## Image of Application
 ![image of working quiz application](https://user-images.githubusercontent.com/86750930/172037801-23c7d57e-eafb-4d3f-a488-691bb725739a.png)

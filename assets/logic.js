@@ -176,11 +176,9 @@ function endQuiz() {
 }
 
 function storeScore() {
-
-
   var userInput = document.querySelector("#initials").value;
   var storedArray = [];
- 
+  
   var storageArray = {
     scoreDis: score,
     initials: userInput

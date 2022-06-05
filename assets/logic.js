@@ -17,6 +17,8 @@ var landingPara = document.getElementsByClassName("paragraph-description");
 var scoreLanding = document.querySelector("#highscore-card");
 var highscoreLink = document.querySelector("#high-link");
 var highscoreOl = document.querySelector(".highscore-list");
+var reset = document.querySelector(".reset");
+var goBack = document.querySelector(".go-back")
 var score = 0;
 var time = 70;
 var inputIndex = 0;
@@ -176,8 +178,7 @@ function endQuiz() {
 }
 
 function storeScore() {
-  var userInput = document.querySelector("#initials").value;
-  var storedArray = [];
+  var userInput = document.querySelector("#initials").value
   
   var storageArray = {
     scoreDis: score,
@@ -185,7 +186,7 @@ function storeScore() {
   };
   storedArray.push(storageArray);
 
-  localStorage.setItem("scoreStored", JSON.stringify(storedArray));
+ window.localStorage.setItem('userInput','score') ;
 
   if (scoreLanding.className === "hide") {
     endGameCard.className = "hide";
@@ -243,3 +244,5 @@ startbtn.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAns);
 initialSubmit.addEventListener("click", storeScore);
 highscoreLink.addEventListener("click", toHighScores);
+reset.addEventListener("click", localStorage.clear());
+goBack.addEventListener("click", renderLanding());

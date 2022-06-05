@@ -18,13 +18,12 @@ var scoreLanding = document.querySelector("#highscore-card");
 var highscoreLink = document.querySelector("#high-link");
 var highscoreOl = document.querySelector(".highscore-list");
 var reset = document.querySelector(".reset");
-var goBack = document.querySelector(".go-back")
 var score = 0;
 var time = 70;
 var inputIndex = 0;
 var questionsIndex = 0;
-var scoreSpliceStart = 0;
-var scoreIndex = 2;
+
+//Array for questions
 
 var questionsArray = [
   {
@@ -90,12 +89,10 @@ var questionsArray = [
 
 // on start button click startGame function
 function startQuiz() {
-  // debugger;
-  console.log("startQuiz has started");
-  console.log(quesLanding.style);
-  if (quesLanding.className === "hide") {
-    console.log(quesLanding.style.display);
-    //target css instead of html
+  if (quesLanding.className === "hide") {;
+    //hides landing elements and displays question elements using a 
+    //class name of hide or show and will show based on css stylings
+    //under same class names
     quesLanding.className = "show";
     answerChoices.className = "show";
     landing.className = "hide";
@@ -106,16 +103,18 @@ function startQuiz() {
 }
 
 function renderQuestions() {
+    //uses preset questionsIndex variable to est a local variable to
+    //loop through question array objects and render them
   var questionDisplay = questionsArray[questionsIndex].question;
   questionHead.textContent = questionDisplay;
-    
-  console.log("rendQuest function has started");
   var answersLength = questionsArray[questionsIndex].possibleAns.length;
   for (var i = 0; i < answersLength; i++) {
     var buttonEl = document.getElementById(i);
     var ans = questionsArray[questionsIndex].possibleAns[i];
     buttonEl.textContent = ans;
   }
+  // if the questions index reaches five it sets time to zero and calls 
+  // end quiz function as that is the length of the question array of objects
   if (questionsIndex === 5) {
     time = 0;
     endQuiz();
@@ -125,19 +124,18 @@ function renderQuestions() {
 function checkAns(event) {
   var answerInput = event.target;
   var answerCheck = answerInput.textContent;
-
+// checks if est local variable matches what was pressed
+// then checks if what was pressed is equal to the correctAns obj 
+// in array
   if (answerCheck === questionsArray[questionsIndex].correctAns) {
     feedback[0].textContent = "Good Job!";
     score += 10;
     scoreDisplay.textContent = score;
   } else {
     feedback[0].textContent = "Wrong!";
-    score -= 5;
     time -= 10;
   }
-  // if (questionsIndex === 5){
-  //     endQuiz();
-  //}
+
   questionsIndex++;
   renderQuestions();
 }
@@ -166,7 +164,9 @@ function timer() {
 }
 
 function endQuiz() {
-  console.log("endGame function has started");
+
+  //hides question card and timer and shows ending game card with final
+  // score displayed
   if (endGameCard.className === "hide") {
     quesLanding.className = "hide";
     answerChoices.className = "hide";
@@ -178,16 +178,24 @@ function endQuiz() {
 }
 
 function storeScore() {
-  var userInput = document.querySelector("#initials").value
-  
+    //pulls user input from initals and sets as var
+  var userInput = document.querySelector("#initials").value;
+  //checks to make sure they submit something a placeholder name is 
+  //put
+  if (!userInput) {
+    userInput = "SecretUser"
+  }
+
+  var storedArray = [];
   var storageArray = {
-    scoreDis: score,
-    initials: userInput
+    score: score,
+    initials: userInput,
   };
+
   storedArray.push(storageArray);
-
- window.localStorage.setItem('userInput','score') ;
-
+  //puts item in local storage
+  localStorage.setItem("storedArray", JSON.stringify(storedArray));
+// hides endgame card and renders highscore page
   if (scoreLanding.className === "hide") {
     endGameCard.className = "hide";
     endGamePage.className = "hide";
@@ -198,51 +206,38 @@ function storeScore() {
 }
 
 function scoresRender() {
-    var storageArray = JSON.parse(localStorage.getItem("scoreStored")) || [];
-    console.log(storageArray);
-    storageArray.sort(function (a, b) {
-      return b.scoreDis - a.scoreDis;
-    });
-    
-    for (i = 0; i <= storageArray.length; i++) {
+    //grabs from local storage
+  var storageArray = JSON.parse(localStorage.getItem("storedArray")) || [];
+//iterates through array to display parts on screen
+  for (i = 0; i <= storageArray.length; i++) {
     var scoreNameDisName = document.createTextNode(
-      storageArray[i].scoreDis + "- " + storageArray[i].initials
+      storageArray[i].score + "- " + storageArray[i].initials
     );
-    console.log(storageArray.scoreDis);
+    //creates li attaches it to ol
     var liEl = document.createElement("li");
     liEl.appendChild(scoreNameDisName);
     highscoreOl.appendChild(liEl);
-    
   }
-
-  // renderDisplay.onload = function();
+}
+//function to render highscores page if the link is clicked on
+function toHighScores() {
+  if (scoreLanding.className === "hide") {
+    quesLanding.className = "hide";
+    answerChoices.className = "hide";
+    timerText.className = "hide";
+    endGameCard.className = "hide";
+    endGamePage.className = "hide";
+    highscoreLink.className = "hide";
+    landing.className = "hide";
+    landingPara.className = "hide";
+    scoreLanding.className = "show";
+    scoresRender();
+  }
 }
 
-function toHighScores(){
-    if (scoreLanding.className === "hide") {
-        quesLanding.className = "hide";
-        answerChoices.className = "hide";
-        timerText.className = "hide";
-        endGameCard.className = "hide";
-        endGamePage.className = "hide";
-        highscoreLink.className = "hide";
-        landing.className = "hide";
-        landingPara.className = "hide";
-        scoreLanding.classList = "show";
-        scoresRender();
-}
-}
-
-// highscore render
-// loop through creation of li score and name appended together from array in display?
-//append child to ol
-//pull scores from local storage div with ol make references to those in ol
-//order high scores from highest to lowest
-// need buttons for html for go back and clear local storage
 
 startbtn.addEventListener("click", startQuiz);
 answerChoices.addEventListener("click", checkAns);
 initialSubmit.addEventListener("click", storeScore);
 highscoreLink.addEventListener("click", toHighScores);
 reset.addEventListener("click", localStorage.clear());
-goBack.addEventListener("click", renderLanding());
